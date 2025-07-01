@@ -1,0 +1,6 @@
+@import "tailwindcss";
+/* src/style.css or src/assets/main.css */
+
+@import 'preline/variants.css'; /* Preline UI CSS */
+
+/* Your other custom CSS */
