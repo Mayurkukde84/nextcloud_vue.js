@@ -1,14 +1,18 @@
 // vite.config.js
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import tailwindcss from '@tailwindcss/vite';
-import forms from '@tailwindcss/forms'; // Ensure this is correctly imported if used
+import tailwindcss from '@tailwindcss/postcss'; // Import it
+import autoprefixer from 'autoprefixer';       // Import it
 
 export default defineConfig({
-  plugins: [
-    vue(),
-    tailwindcss(),
-    // forms(), // Only include if you actually installed @tailwindcss/forms
-  ],
-  // Other Vite configuration options if any
+  plugins: [vue()],
+  css: {
+    postcss: {
+      plugins: [
+        tailwindcss(), // Call it as a function
+        autoprefixer(), // Call it as a function
+        // ... any other PostCSS plugins you have, calling them as functions
+      ],
+    },
+  },
 });

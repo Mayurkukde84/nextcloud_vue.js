@@ -1,6 +1,35 @@
-@import "tailwindcss";
 /* src/style.css or src/assets/main.css */
-
-@import 'preline/variants.css'; /* Preline UI CSS */
+/* src/style.css or src/assets/main.css */
+@import 'tailwindcss';
+@import 'preline/variants.css'; /* Preline UI CSS */ /* Preline UI CSS */
 
 /* Your other custom CSS */
+
+/* You can add your own custom CSS here if needed */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --SideNav-background: #fff;
+  --SideNav-color: #000;
+  --SideNav-border: 1px solid #ddd;
+  --SideNav-width: 256px;
+  --SideNav-zIndex: 1200;
+
+  --NavGroup-title-color: #888;
+
+  --NavItem-color: #333;
+  --NavItem-hover-background: #f0f0f0;
+  --NavItem-hover-color: #000;
+  --NavItem-disabled-background: #eee;
+  --NavItem-disabled-color: #aaa;
+  --NavItem-active-background: #e0e0e0;
+  --NavItem-active-color: #000;
+  --NavItem-open-color: #000;
+  --NavItem-icon-color: #666;
+  --NavItem-icon-active-color: #000;
+  --NavItem-expand-color: #999;
+  --NavItem-children-indicator: #007bff;
+  --NavItem-children-border: #ccc;
+}
