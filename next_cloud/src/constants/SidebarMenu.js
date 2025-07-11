@@ -219,8 +219,8 @@ const getSettingsIcon = (strokeWidth = 2) => `
 export const sidebarMenu = [
   {
     title: "All Files",
-    icon: getFolderIcon(1.5), // Use a slightly thinner stroke for this icon
-    path: "/dashboard/files",
+    icon: getFolderIcon(), // Use a slightly thinner stroke for this icon
+    path: "/dashboard/files/allfiles",
     currentPathSegment: "files", // Unique segment for dynamic matching
   },
   {
@@ -228,7 +228,7 @@ export const sidebarMenu = [
     icon: `
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m16 10 3-3m0 0-3-3m3 3H5v3m3 4-3 3m0 0 3 3m-3-3h14v-3" />
         `,
-    path: "/dashboard/recent",
+    path: "/dashboard/files/recent",
     currentPathSegment: "recent",
   },
   {
@@ -237,7 +237,7 @@ export const sidebarMenu = [
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M14 8H4m8 3.5v5M9.5 14h5M4 6v13a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-5.032a1 1 0 0 1-.768-.36l-1.9-2.28a1 1 0 0 0-.768-.36H5a1 1 0 0 0-1 1Z" />
         `,
-    path: "#",
+    path: "/dashboard/files/recent",
     currentPathSegment: "group-folders",
   },
   {
@@ -246,7 +246,7 @@ export const sidebarMenu = [
             <path stroke="currentColor" stroke-width="2"
                 d="M11.083 5.104c.35-.8 1.485-.8 1.834 0l1.752 4.022a1 1 0 0 0 .84.597l4.463.342c.9.069 1.255 1.2.556 1.771l-3.33 2.723a1 1 0 0 0-.337 1.016l1.03 4.119c.214.858-.71 1.552-1.474 1.106l-3.913-2.281a1 1 0 0 0-1.008 0L7.583 20.8c-.764.446-1.688-.248-1.474-1.106l1.03-4.119A1 1 0 0 0 6.8 14.56l-3.33-2.723c-.698-.571-.342-1.702.557-1.771l4.462-.342a1 1 0 0 0 .84-.597l1.753-4.022Z" />
         `,
-    path: "#",
+    path: "/dashboard/files/favorites",
     currentPathSegment: "favorites",
   },
   {

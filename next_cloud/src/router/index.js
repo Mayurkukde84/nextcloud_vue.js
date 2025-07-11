@@ -2,7 +2,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import DashboardLayout from "../layouts/DashboardLayout.vue";
 import DashboardHome from "../views/DashboardHome.vue";
-import Files from "../views/Files.vue";
+
 import Photos from "../views/Photos.vue";
 import Activity from "../views/Activity.vue";
 import Talk from "../views/Talk.vue";
@@ -16,24 +16,53 @@ import Conference from "../views/Conference.vue";
 import Deck from "../views/Deck.vue";
 import Collecation from "../views/Collecation.vue";
 import Mail from "../views/Mail.vue";
+import Recent from "../views/files/Recent.vue";
+import Files from "../views/files/Files.vue";
+import Favourites from "../views/files/Favourites.vue";
+import GroupFolders from "../views/files/GroupFolders.vue";
 const routes = [
   {
     path: "/",
-    redirect: "/dashboard", // Redirect root to dashboard
+    redirect: "/dashboard",
   },
   {
     path: "/dashboard",
-    component: DashboardLayout, // This route uses our DashboardLayout
+    component: DashboardLayout,
     children: [
       {
-        path: "", // Default child route for /dashboard
+        path: "",
         name: "DashboardHome",
         component: DashboardHome,
       },
       {
-        path: "files",
-        name: "Files",
-        component: Files,
+        path: "/dashboard/files",
+        
+        children: [
+          {
+            path: "",
+            // Redirect /dashboard/files → /dashboard/files/allfiles
+          },
+          {
+            path: "allfiles",
+            name: "AllFiles",
+            component: Files,
+          },
+          {
+            path: "recent",
+            name: "Recent",
+            component:Recent,
+          },
+          {
+            path: "favorites",
+            name: "Favorites",
+            component:Favourites
+          },
+          {
+            path: "groups",
+            name: "Groups",
+            component: GroupFolders,
+          },
+        ],
       },
       {
         path: "photos",
@@ -42,11 +71,6 @@ const routes = [
       },
       {
         path: "activity",
-        name: "Activity",
-        component: Activity,
-      },
-      {
-        path: "",
         name: "Activity",
         component: Activity,
       },
@@ -69,11 +93,6 @@ const routes = [
         path: "calendar",
         name: "Calendar",
         component: Calendar,
-      },
-      {
-        path: "activity",
-        name: "Activity",
-        component: Activity,
       },
       {
         path: "deck",
@@ -107,7 +126,6 @@ const routes = [
       },
     ],
   },
-  // Add other top-level routes here if needed (e.g., /login, /public-page)
 ];
 
 const router = createRouter({

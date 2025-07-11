@@ -135,7 +135,7 @@ const currentMenu = computed(() => {
     console.log('Evaluating currentMenu. Route path:', route.path);
 
     // More flexible matching - check if path contains 'files' anywhere
-    if (route.path.endsWith('/files')) {
+    if (route.path.includes('/files')) {
         console.log('Condition met: Path contains "/files". Returning defaultSidebarMenu.');
         return defaultSidebarMenu;
     } else if (route.path.endsWith('/dashboard')) {
