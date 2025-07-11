@@ -1,38 +1,110 @@
 // src/router/index.js
-import { createRouter, createWebHistory } from 'vue-router';
-import DashboardLayout from '../layouts/DashboardLayout.vue';
-import DashboardHome from '../views/DashboardHome.vue';
+import { createRouter, createWebHistory } from "vue-router";
+import DashboardLayout from "../layouts/DashboardLayout.vue";
+import DashboardHome from "../views/DashboardHome.vue";
+import Files from "../views/Files.vue";
+import Photos from "../views/Photos.vue";
+import Activity from "../views/Activity.vue";
+import Talk from "../views/Talk.vue";
 
+import Contacts from "../views/Contacts.vue";
+import Calendar from "../views/Calendar.vue";
+import Polls from "../views/Polls.vue";
+import Forms from "../views/Forms.vue";
+import Tasks from "../views/Tasks.vue";
+import Conference from "../views/Conference.vue";
+import Deck from "../views/Deck.vue";
+import Collecation from "../views/Collecation.vue";
+import Mail from "../views/Mail.vue";
 const routes = [
   {
-    path: '/',
-    redirect: '/dashboard', // Redirect root to dashboard
+    path: "/",
+    redirect: "/dashboard", // Redirect root to dashboard
   },
   {
-    path: '/dashboard',
+    path: "/dashboard",
     component: DashboardLayout, // This route uses our DashboardLayout
     children: [
       {
-        path: '', // Default child route for /dashboard
-        name: 'DashboardHome',
+        path: "", // Default child route for /dashboard
+        name: "DashboardHome",
         component: DashboardHome,
       },
       {
-        path: 'tasks',
-        name: 'DashboardTasks',
-        component: { template: '<h2 class="text-2xl font-semibold dark:text-gray-200">Your Tasks</h2><p class="dark:text-gray-300">Manage your tasks here.</p>' }
+        path: "files",
+        name: "Files",
+        component: Files,
       },
       {
-        path: 'reports',
-        name: 'DashboardReports',
-        component: { template: '<h2 class="text-2xl font-semibold dark:text-gray-200">Reports Overview</h2><p class="dark:text-gray-300">View your analytics and reports.</p>' }
+        path: "photos",
+        name: "Photos",
+        component: Photos,
       },
       {
-        path: 'settings',
-        name: 'DashboardSettings',
-        component: { template: '<h2 class="text-2xl font-semibold dark:text-gray-200">Application Settings</h2><p class="dark:text-gray-300">Configure your preferences.</p>' }
+        path: "activity",
+        name: "Activity",
+        component: Activity,
       },
-      // Add more dashboard sub-routes as needed
+      {
+        path: "",
+        name: "Activity",
+        component: Activity,
+      },
+      {
+        path: "talk",
+        name: "Talk",
+        component: Talk,
+      },
+      {
+        path: "mail",
+        name: "Mail",
+        component: Mail,
+      },
+      {
+        path: "contacts",
+        name: "Contacts",
+        component: Contacts,
+      },
+      {
+        path: "calendar",
+        name: "Calendar",
+        component: Calendar,
+      },
+      {
+        path: "activity",
+        name: "Activity",
+        component: Activity,
+      },
+      {
+        path: "deck",
+        name: "Deck",
+        component: Deck,
+      },
+      {
+        path: "collecation",
+        name: "Collecation",
+        component: Collecation,
+      },
+      {
+        path: "polls",
+        name: "Polls",
+        component: Polls,
+      },
+      {
+        path: "forms",
+        name: "Forms",
+        component: Forms,
+      },
+      {
+        path: "task",
+        name: "Task",
+        component: Tasks,
+      },
+      {
+        path: "conference",
+        name: "Conference",
+        component: Conference,
+      },
     ],
   },
   // Add other top-level routes here if needed (e.g., /login, /public-page)

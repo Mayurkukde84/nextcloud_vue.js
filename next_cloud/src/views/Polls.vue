@@ -1,0 +1,1 @@
+<template>Polls</template>

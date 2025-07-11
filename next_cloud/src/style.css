@@ -2,13 +2,22 @@
 /* src/style.css or src/assets/main.css */
 @import 'tailwindcss';
 @import 'preline/variants.css'; /* Preline UI CSS */ /* Preline UI CSS */
-
+@custom-variant dark (&:where(.dark, .dark *));
 /* Your other custom CSS */
 
 /* You can add your own custom CSS here if needed */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom scrollbar hiding */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
 
 :root {
   --SideNav-background: #fff;

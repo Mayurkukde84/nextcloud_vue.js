@@ -1,19 +1,15 @@
-src/layouts/DashboardLayout.vue
 <template>
   <div class="flex h-screen overflow-hidden bg-gray-50 ">
-    <!-- Left Sidebar -->
-
     <Sidebar />
-
     <PushSidebar />
 
-    <!-- Main Content Wrapper (Navbar + Content) -->
-    <div class="flex flex-col flex-1 overflow-hidden">
-
+    <div
+      class="flex-1 transition-all duration-300 ease-in-out"
+      :class="[isExpanded || isHovered ? 'flex flex-col overflow-hidden ' : 'flex flex-col overflow-hidden']"
+    >
       <AppNavbar />
 
-      <!-- Main Content Area -->
-      <main class="flex-1 overflow-y-auto p-3 bg-gray-50  text-gray-800 ">
+      <main class="flex-1 overflow-y-auto p-3 bg-gray-50 text-gray-800 dark:bg-gray-800 dark:text-gray-200">
         <router-view></router-view>
       </main>
     </div>
@@ -24,6 +20,7 @@ src/layouts/DashboardLayout.vue
 import AppNavbar from '../components/AppNavbar.vue';
 import PushSidebar from '../components/PushSidebar.vue';
 import Sidebar from '../components/Sidebar.vue';
+import { useSidebar } from '../composables/useSidebar'; // Import useSidebar
 
 export default {
   name: 'DashboardLayout',
@@ -32,6 +29,16 @@ export default {
     Sidebar,
     PushSidebar
   },
+  setup() {
+    // This component only INJECTS the context
+    const { isExpanded, isHovered } = useSidebar();
+    // REMOVE THIS CALL: useSidebarProvider() // This call is incorrect here
+
+    return {
+      isExpanded,
+      isHovered,
+    };
+  }
 };
 </script>
 
