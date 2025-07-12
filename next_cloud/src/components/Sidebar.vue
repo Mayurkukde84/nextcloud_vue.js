@@ -11,7 +11,7 @@ const navLinks = ref([
                 <path fill-rule="evenodd" d="M4.857 3A1.857 1.857 0 0 0 3 4.857v4.286C3 10.169 3.831 11 4.857 11h4.286A1.857 1.857 0 0 0 11 9.143V4.857A1.857 1.857 0 0 0 9.143 3H4.857Zm10 0A1.857 1.857 0 0 0 13 4.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 21 9.143V4.857A1.857 1.857 0 0 0 19.143 3h-4.286Zm-10 10A1.857 1.857 0 0 0 3 14.857v4.286C3 20.169 3.831 21 4.857 21h4.286A1.857 1.857 0 0 0 11 19.143v-4.286A1.857 1.857 0 0 0 9.143 13H4.857ZM18 14a1 1 0 1 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 1 0 2 0v-2h2a1 1 0 1 0 0-2h-2v-2Z" clip-rule="evenodd" />
             </svg>
         `,
-        to: '/dashboard',
+        to: '/dashboards-home',
         exact: true // Add exact matching for dashboard
     },
     {
@@ -169,42 +169,57 @@ const utilityLinks = ref([
     </div>
 
     <nav class="flex flex-col items-center flex-grow space-y-2">
-      <router-link
-        v-for="link in navLinks"
-        :key="link.name"
-        :to="link.to"
-        :exact="link.exact"
-        class="group relative flex justify-center items-center w-10 h-10 rounded-md text-gray-600 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-200 shrink-0"
-        exact-active-class="bg-blue-600 text-white dark:bg-blue-500 dark:text-white"
-      >
-        <span v-html="link.icon" class="flex-shrink-0"></span>
-        <span
-          class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 bg-gray-900 dark:bg-gray-700 text-xs text-white rounded-lg whitespace-nowrap transition-opacity duration-200"
-          role="tooltip"
-        >
-          {{ link.name }}
-        </span>
-      </router-link>
+   <router-link
+  v-for="link in navLinks"
+  :key="link.name"
+  :to="link.to"
+  :exact="link.exact"
+  :class="[
+    'group relative flex justify-center items-center w-10 h-10 rounded-md text-gray-600 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-200 shrink-0',
+    $route.path.startsWith(link.to.split('/').slice(0, 3).join('/')) &&
+    link.to !== '/' 
+      ? 'bg-blue-600 text-white dark:bg-blue-500 dark:text-white'
+      : ''
+  ]"
+>
+  <!-- SVG icon: make sure it uses currentColor -->
+  <span
+    v-html="link.icon"
+    class="flex-shrink-0 w-5 h-5"
+  ></span>
+
+  <!-- Tooltip -->
+  <span
+    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 bg-gray-900 dark:bg-gray-700 text-xs text-white rounded-lg whitespace-nowrap transition-opacity duration-200"
+    role="tooltip"
+  >
+    {{ link.name }}
+  </span>
+</router-link>
+
     </nav>
 
     <div class="flex flex-col items-center space-y-0 mt-12 pb-4">
-      <router-link
-        v-for="link in utilityLinks"
-        :key="link.name"
-        :to="link.to"
-        :exact="link.exact"
-        class="group relative flex justify-center items-center w-10 h-10 rounded-md text-gray-600 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-200 shrink-0"
-        exact-active-class="bg-blue-600 text-white dark:bg-blue-500 dark:text-white"
-      >
-        <span v-html="link.icon" class="flex-shrink-0"></span>
-        <span
-          class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 bg-gray-900 dark:bg-gray-700 text-xs text-white rounded-lg whitespace-nowrap transition-opacity duration-200"
-          role="tooltip"
-        >
-          {{ link.name }}
-        </span>
-      </router-link>
-    </div>
+  <router-link
+    v-for="link in navLinks"
+    :key="link.name"
+    :to="link.to"
+    :exact="link.exact"
+    :class="{
+      'group relative flex justify-center items-center w-10 h-10 rounded-md text-gray-600 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-200 shrink-0': true,
+      'bg-blue-600 text-white dark:bg-blue-500 dark:text-white': isActive(link)
+    }"
+  >
+    <span v-html="link.icon" class="flex-shrink-0"></span>
+    <span
+      class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 inline-block absolute invisible z-20 py-1.5 px-2.5 bg-gray-900 dark:bg-gray-700 text-xs text-white rounded-lg whitespace-nowrap transition-opacity duration-200"
+      role="tooltip"
+    >
+      {{ link.name }}
+    </span>
+  </router-link>
+</div>
+
 
     <div class="pt-4">
       <a href="#" class="group relative flex justify-center items-center w-10 h-10 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-800 dark:hover:text-white transition-colors duration-200 shrink-0">
@@ -225,6 +240,16 @@ const utilityLinks = ref([
 <script>
 export default {
     name: 'Sidebar',
+    methods: {
+  // Check if current route path contains '/dashboard/files'
+isActive(link) {
+  console.log(link.to);
+  console.log(this.$route.path.includes('/dashboard/files'));
+  return this.$route.path.includes('/dashboard/files');
+}
+
+}
+
 };
 </script>
 

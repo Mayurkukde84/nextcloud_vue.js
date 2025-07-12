@@ -37,7 +37,7 @@
                             :id="item.submenu ? 'accordion-' + item.currentPathSegment : null">
 
                             <!-- Regular menu item (no submenu) -->
-                            <a v-if="!item.submenu" :href="item.path"
+                            <router-link v-if="!item.submenu" :to="item.path"
                                 class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100
                                        dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700"
                                 :class="{ 'bg-gray-100 dark:bg-gray-700': isActive(item), 'font-semibold': isActive(item) }">
@@ -45,7 +45,7 @@
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                     viewBox="0 0 24 24" v-html="item.icon"></svg>
                                 {{ item.title }}
-                            </a>
+                            </router-link>
 
                             <!-- Accordion menu item (with submenu) -->
                             <button v-else type="button" class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg cursor-pointer
